@@ -177,6 +177,8 @@ main {
 
 .content__item--card-details {
   padding: 0.5rem;
+  display: grid;
+  grid-template-rows: 125px 25px;
 }
 
 .content__item--card-details > .title {
@@ -185,7 +187,9 @@ main {
 }
 
 .content__item--card-details > .info {
-  font-size: 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 @media (min-width: 600px) {
