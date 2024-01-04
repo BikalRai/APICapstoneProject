@@ -60,11 +60,12 @@
         </div>
         <div class="content__item">
           <div class="content__item-heading">
-            <h3>Highest Rated</h3>
+            <h3>Top Rated</h3>
             <form action="/top-rated">
               <button class="btn">view more</button>
             </form>
           </div>
+          <% if (locals.topRated) { %>
           <div class="content__item-cards">
             <% topRated.map(rated => { %>
             <div class="content__item--card">
@@ -89,6 +90,7 @@
             </div>
             <% }) %>
           </div>
+          <% } %>
         </div>
         <div class="content__item">
           <div class="content__item-heading">

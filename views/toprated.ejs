@@ -9,5 +9,17 @@
   </head>
   <body>
     <h1>Top Rated Anime</h1>
+    <ul>
+      <% topAnimes.map(anime => {%>
+      <li><%= anime.attributes.canonicalTitle %></li>
+
+      <% }) %>
+    </ul>
+
+    <% if (page > 0) { %>
+    <a href="/top-rated?page=<%= page - 1 %>">Previous Page</a>
+    <% } %> <% if (topAnimes.length === limit) { %>
+    <a href="/top-rated?page=<%= page + 1 %>">Next Page</a>
+    <%} %>
   </body>
 </html>

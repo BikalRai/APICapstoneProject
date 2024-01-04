@@ -6,7 +6,7 @@ const app = express();
 const port = 3000;
 
 const API_URL = "https://kitsu.io/api/edge";
-const limit = 10;
+const limit = 20;
 
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -14,7 +14,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 const getTopRated = async (offset) => {
   try {
     const response = await axios.get(
-      `${API_URL}/anime?sort=-averageRating&page[limit]=${limit}&page[offset] = ${offset}`
+      `${API_URL}/anime?sort=-averageRating&page[limit]=${limit}&page[offset]=${offset}`
     );
     return response.data.data;
   } catch (error) {
@@ -30,19 +30,11 @@ app.get("/", async (req, res) => {
       `${API_URL}/anime?sort=-averageRating`
     );
 
-    const page = parseInt(req.query.page) || 0;
-    console.log(page);
-
-    const offset = page * limit;
-
     const trendingAnime = trendingResponse.data.data;
-    const topRatedAnime = await getTopRated(offset);
-
+    const topRatedAnime = topRatedResponse.data.data;
     res.render("index.ejs", {
       trending: trendingAnime,
       topRated: topRatedAnime,
-      page: page,
-      limit: limit,
     });
   } catch (error) {
     console.log(error);
@@ -51,7 +43,16 @@ app.get("/", async (req, res) => {
 });
 
 app.get("/top-rated", async (req, res) => {
-  res.render("toprated.ejs");
+  const page = parseInt(req.query.page) || 0;
+  const offset = page * limit;
+
+  const topAnimes = await getTopRated(offset);
+
+  res.render("toprated.ejs", {
+    topAnimes: topAnimes,
+    page: page,
+    limit: limit,
+  });
 });
 
 app.listen(port, () => {
