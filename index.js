@@ -38,8 +38,8 @@ app.get("/", async (req, res) => {
     });
   } catch (error) {
     console.log(error);
+    res.render("index.ejs");
   }
-  res.render("index.ejs");
 });
 
 app.get("/top-rated", async (req, res) => {
@@ -47,9 +47,10 @@ app.get("/top-rated", async (req, res) => {
   const offset = page * limit;
 
   const topAnimes = await getTopRated(offset);
+  const topAnimesArr = [...topAnimes];
 
   res.render("toprated.ejs", {
-    topAnimes: topAnimes,
+    topAnimes: topAnimesArr,
     page: page,
     limit: limit,
   });

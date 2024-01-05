@@ -1,0 +1,58 @@
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: var(--container-width);
+  margin: auto;
+}
+
+.back {
+  color: var(--primary-color);
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  transition: 0.4s;
+}
+
+.back:hover {
+  color: var(--font-white);
+}
+
+.back i {
+  transition: 0.5s;
+}
+
+.back:hover i {
+  transform: translateX(-1rem);
+}
+
+main .content {
+  width: var(--container-width);
+  margin: auto;
+}
+
+.pag__btns {
+  display: flex;
+  justify-content: space-between;
+}
+
+.pag__btns > a {
+  color: var(--primary-color);
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  transition: 0.4s;
+}
+
+.pag__btns > a:hover {
+  color: var(--font-white);
+}
+
+.pag__btns > a:hover i {
+  font-size: 1.5rem;
+}
+
+.pag__btns > a:last-child {
+  margin-left: auto;
+}

@@ -1,25 +1,54 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Top Rated Anime</title>
-    <link rel="stylesheet" href="/styles/index.css" />
-    <link rel="stylesheet" href="/styles/top.css" />
-  </head>
-  <body>
-    <h1>Top Rated Anime</h1>
-    <ul>
-      <% topAnimes.map(anime => {%>
-      <li><%= anime.attributes.canonicalTitle %></li>
-
-      <% }) %>
-    </ul>
-
-    <% if (page > 0) { %>
-    <a href="/top-rated?page=<%= page - 1 %>">Previous Page</a>
-    <% } %> <% if (topAnimes.length === limit) { %>
-    <a href="/top-rated?page=<%= page + 1 %>">Next Page</a>
-    <%} %>
-  </body>
-</html>
+<%- include('partials/header.ejs') %>
+<header>
+  <form action="/">
+    <button class="btn back">
+      <i class="fa-solid fa-arrow-left"></i>
+      BACK
+    </button>
+  </form>
+  <h1>Top Rated Anime</h1>
+</header>
+<main>
+  <section class="content">
+    <div class="content__item show">
+      <% if (locals.topAnimes) { %>
+      <div class="content__item-cards">
+        <% topAnimes.map(anime => { %>
+        <div class="content__item--card">
+          <div class="content__item--card-image">
+            <img
+              src="<%= anime.attributes.posterImage.medium %>"
+              alt="Anime image"
+            />
+            <div class="info">
+              <p class="rating"><%= anime.attributes.averageRating %> Rating</p>
+            </div>
+          </div>
+          <div class="content__item--card-details">
+            <p class="title"><%= anime.attributes.canonicalTitle %></p>
+            <p class="info">
+              <small> <%= anime.attributes.subtype %> </small>
+              <small><%= anime.attributes.status %></small>
+            </p>
+          </div>
+        </div>
+        <% }) %>
+      </div>
+      <% } %>
+    </div>
+    <div class="pag__btns">
+      <% if (page > 0) { %>
+      <a href="/top-rated?page=<%= page - 1 %>">
+        <i class="fa-solid fa-arrow-left"></i>
+        Previous Page
+      </a>
+      <% } %> <% if (topAnimes.length === limit) { %>
+      <a href="/top-rated?page=<%= page + 1 %>">
+        Next Page
+        <i class="fa-solid fa-arrow-right"></i>
+      </a>
+      <%} %>
+    </div>
+  </section>
+</main>
+<%- include('partials/footer.ejs') %>
