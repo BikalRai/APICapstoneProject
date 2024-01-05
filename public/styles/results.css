@@ -1,0 +1,20 @@
+.anime-details {
+  width: var(--container-width);
+  margin: auto;
+  padding-bottom: 5rem;
+}
+
+.nav__btns {
+  display: flex;
+  align-items: center;
+}
+
+.nav__btns a {
+  color: var(--primary-color);
+  font-size: 1.2rem;
+  margin: 2rem 0;
+}
+
+.nav__btns a:last-child {
+  margin-left: auto;
+}

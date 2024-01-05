@@ -1,0 +1,35 @@
+<%- include('partials/header.ejs') %>
+<main class="anime-details">
+  <form action="/" class="anime-form">
+    <button class="btn">
+      <i class="fa-solid fa-arrow-left"></i>
+      Back
+    </button>
+  </form>
+  <% if (locals.results) { %>
+  <div class="content__item-cards">
+    <% results.map(result => { %>
+    <a href="/anime-detail?id=<%= result.id %>" class="content__item--card">
+      <input type="hidden" value="<%= result.id %>" name="id" />
+      <div class="content__item--card-image">
+        <img
+          src="<%= result.attributes.posterImage.medium %>"
+          alt="Anime image"
+        />
+        <div class="info">
+          <p class="rating"><%= result.attributes.averageRating %> Rating</p>
+        </div>
+      </div>
+      <div class="content__item--card-details">
+        <p class="title"><%= result.attributes.canonicalTitle %></p>
+        <p class="info">
+          <small> <%= result.attributes.subtype %> </small>
+          <small><%= result.attributes.status %></small>
+        </p>
+      </div>
+    </a>
+    <% }) %>
+  </div>
+  <%}%>
+</main>
+<%- include('partials/footer.ejs') %>

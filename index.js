@@ -23,6 +23,18 @@ const getTopRated = async (offset) => {
   }
 };
 
+const getSearchedData = async (offset, limit, query) => {
+  try {
+    const response = await axios.get(
+      `${API_URL}/anime?filter[text]=${query}&page[limit]=${limit}&page[offset]=${offset}`
+    );
+    return response.data.data;
+  } catch (error) {
+    console.log(error);
+    return [];
+  }
+};
+
 app.get("/", async (req, res) => {
   try {
     const trendingResponse = await axios.get(`${API_URL}/trending/anime`);
@@ -62,6 +74,20 @@ app.get("/anime-detail", async (req, res) => {
   const response = await axios.get(`${API_URL}/anime/${id}`);
 
   res.render("anime-detail.ejs", { anime: response.data.data });
+});
+
+app.get("/search", async (req, res) => {
+  const query = req.query.search;
+  const page = parseInt(req.query.page) || 0;
+  const offset = page * limit;
+
+  const queriedData = await getSearchedData(offset, limit, query);
+
+  res.render("results.ejs", {
+    results: queriedData,
+    page: page,
+    limit: limit,
+  });
 });
 
 app.listen(port, () => {

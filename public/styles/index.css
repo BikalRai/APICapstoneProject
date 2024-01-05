@@ -77,11 +77,13 @@ header > form > input {
 }
 
 header > form > input:focus {
-  color: var(--font-grayish-blue);
+  color: var(--font-white);
+  font-size: 1.2rem;
 }
 
 header > form > input::placeholder {
   color: var(--font-grayish-blue);
+  font-size: 1.2rem;
 }
 
 /* content */
@@ -192,6 +194,15 @@ main {
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+
+/* footer */
+footer {
+  font-size: 1.2rem;
+  text-align: center;
+  background-color: var(--primary-color);
+  color: var(--font-white);
+  padding: 2rem 0;
 }
 
 @media (min-width: 600px) {
