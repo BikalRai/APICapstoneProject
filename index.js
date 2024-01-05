@@ -56,6 +56,14 @@ app.get("/top-rated", async (req, res) => {
   });
 });
 
+app.get("/anime-detail", async (req, res) => {
+  const id = req.query.id;
+
+  const response = await axios.get(`${API_URL}/anime/${id}`);
+
+  res.render("anime-detail.ejs", { anime: response.data.data });
+});
+
 app.listen(port, () => {
   console.log(`Server is running on port ${port}...`);
 });

@@ -1,0 +1,43 @@
+<%- include('partials/header.ejs') %>
+<main class="anime-detail">
+  <form action="/" class="anime-form">
+    <button class="btn">
+      <i class="fa-solid fa-arrow-left"></i>
+      Back
+    </button>
+  </form>
+  <section class="anime">
+    <div class="anime__image">
+      <img
+        src="<%= anime.attributes.posterImage.original %>"
+        alt="Anime Image"
+      />
+    </div>
+    <div class="anime__details">
+      <h2>Title: <%= anime.attributes.canonicalTitle %></h2>
+      <h4>Description:</h4>
+      <p><%= anime.attributes.synopsis %></p>
+      <p>
+        <span>Created: </span>
+        <%= anime.attributes.startDate %>
+      </p>
+      <p>
+        <span>Estimated End Date: </span>
+        <%= anime.attributes.endDate %>
+      </p>
+      <p>
+        <span>Rating Rank: </span>
+        <%= anime.attributes.ratingRank %>
+      </p>
+      <p>
+        <span>SubType: </span>
+        <%= anime.attributes.subtype %>
+      </p>
+      <p>
+        <span>Status: </span>
+        <%= anime.attributes.status %>
+      </p>
+    </div>
+  </section>
+</main>
+<%- include('partials/footer.ejs') %>

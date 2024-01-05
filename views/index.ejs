@@ -13,7 +13,7 @@
   <div class="content">
     <div class="content__btns">
       <button class="btn active">Trending</button>
-      <button class="btn">Highest Rated</button>
+      <button class="btn">Top Rated</button>
       <button class="btn">Most Popular</button>
     </div>
     <hr />
@@ -25,7 +25,8 @@
       <% if (locals.trending) { %>
       <div class="content__item-cards">
         <% trending.map(trend => { %>
-        <div class="content__item--card">
+        <a href="/anime-detail?id=<%= trend.id %>" class="content__item--card">
+          <input type="hidden" value="<%= trend.id %>" name="id" />
           <div class="content__item--card-image">
             <img
               src="<%= trend.attributes.posterImage.medium %>"
@@ -42,7 +43,7 @@
               <small><%= trend.attributes.status %></small>
             </p>
           </div>
-        </div>
+        </a>
         <% }) %>
       </div>
       <%}%>
@@ -57,7 +58,7 @@
       <% if (locals.topRated) { %>
       <div class="content__item-cards">
         <% topRated.map(rated => { %>
-        <div class="content__item--card">
+        <a href="/anime-detail?id=<%= rated.id %>" class="content__item--card">
           <div class="content__item--card-image">
             <img
               src="<%= rated.attributes.posterImage.medium %>"
@@ -74,7 +75,7 @@
               <small><%= rated.attributes.status %></small>
             </p>
           </div>
-        </div>
+        </a>
         <% }) %>
       </div>
       <% } %>
@@ -85,7 +86,7 @@
         <!-- <a href="">View more</a> -->
       </div>
       <div class="content__item-cards">
-        <div class="content__item--card">
+        <!-- <div class="content__item--card">
           <div class="content__item--card-image">
             <img src="/images/logo.jpg" alt="Anime image" />
             <div class="info">
@@ -169,7 +170,8 @@
               <small>info</small>
             </p>
           </div>
-        </div>
+        </div> -->
+        <h1>Coming soon</h1>
       </div>
     </div>
   </div>

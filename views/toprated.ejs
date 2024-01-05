@@ -1,5 +1,5 @@
 <%- include('partials/header.ejs') %>
-<header>
+<header class="top__header">
   <form action="/">
     <button class="btn back">
       <i class="fa-solid fa-arrow-left"></i>
@@ -14,7 +14,7 @@
       <% if (locals.topAnimes) { %>
       <div class="content__item-cards">
         <% topAnimes.map(anime => { %>
-        <div class="content__item--card">
+        <a href="/anime-detail?id=<%= anime.id %>" class="content__item--card">
           <div class="content__item--card-image">
             <img
               src="<%= anime.attributes.posterImage.medium %>"
@@ -31,7 +31,7 @@
               <small><%= anime.attributes.status %></small>
             </p>
           </div>
-        </div>
+        </a>
         <% }) %>
       </div>
       <% } %>
